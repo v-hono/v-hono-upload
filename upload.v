@@ -1,7 +1,7 @@
 module hono_upload
 
-import meiseayoung.hono
-import v_hono.v_hono_storage
+import hono
+import v_hono_storage
 import net.http
 import os
 import crypto.md5
@@ -129,7 +129,7 @@ pub fn new_chunk_upload_manager(config ChunkUploadConfig, storage_path string, d
 	return ChunkUploadManager{
 		config: config
 		uploads: map[string]FileUploadStatus{}
-		file_service: file_service
+		file_service: &file_service
 	}
 }
 

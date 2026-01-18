@@ -1,7 +1,7 @@
 module main
 
 import hono_upload
-import v_hono.v_hono_storage
+import v_hono_storage
 import os
 
 // 测试目录
