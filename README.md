@@ -1,4 +1,4 @@
-# meiseayoung.hono_upload
+# hono_upload
 
 File upload handling for v-hono-core framework.
 
@@ -15,8 +15,8 @@ File upload handling for v-hono-core framework.
 ## Installation
 
 ```bash
-v install meiseayoung.hono
-v install meiseayoung.hono_upload
+v install --git https://github.com/v-hono/v-hono-core
+v install --git https://github.com/v-hono/v-hono-upload
 ```
 
 ## Usage
@@ -24,8 +24,8 @@ v install meiseayoung.hono_upload
 ### Basic File Upload
 
 ```v
-import meiseayoung.hono
-import meiseayoung.hono_upload
+import hono
+import hono_upload
 
 fn main() {
     mut app := hono.Hono.new()
@@ -46,8 +46,8 @@ fn main() {
 ### File Storage with Database
 
 ```v
-import meiseayoung.hono
-import meiseayoung.hono_upload
+import hono
+import hono_upload
 
 fn main() {
     mut app := hono.Hono.new()
