@@ -1,7 +1,7 @@
 Module {
 	name: 'hono_upload'
-	description: 'File upload handling for v-hono framework'
-	version: '0.1.0'
+	description: 'Chunked file upload handling for v-hono framework with v-hono-storage integration'
+	version: '0.2.0'
 	license: 'MIT'
-	dependencies: ['v-hono.hono']
+	dependencies: ['v-hono.hono', 'v-hono.v-hono-storage']
 }

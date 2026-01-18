@@ -1,6 +1,7 @@
 module main
 
 import hono_upload
+
 // 测试：分片上传配置
 fn test_chunk_upload_config() {
 	config := hono_upload.ChunkUploadConfig{
@@ -8,10 +9,8 @@ fn test_chunk_upload_config() {
 		max_file_size: 500 * 1024 * 1024  // 500MB
 		max_chunk_size: 10 * 1024 * 1024  // 10MB
 		temp_dir: './test_chunks'
-		upload_dir: './test_uploads'
 		cleanup_delay: 1800
 		clear_chunks_on_complete: true
-		db_path: './test_db.db'
 		merge_buffer_size: 4096
 	}
 	
@@ -19,10 +18,8 @@ fn test_chunk_upload_config() {
 	assert config.max_file_size == 500 * 1024 * 1024
 	assert config.max_chunk_size == 10 * 1024 * 1024
 	assert config.temp_dir == './test_chunks'
-	assert config.upload_dir == './test_uploads'
 	assert config.cleanup_delay == 1800
 	assert config.clear_chunks_on_complete == true
-	assert config.db_path == './test_db.db'
 	assert config.merge_buffer_size == 4096
 }
 
@@ -252,9 +249,21 @@ fn test_default_chunk_upload_config() {
 	assert config.max_file_size == 1024 * 1024 * 1024  // 1GB
 	assert config.max_chunk_size == 10 * 1024 * 1024  // 10MB
 	assert config.temp_dir == './uploads/chunks'
-	assert config.upload_dir == './uploads/files'
 	assert config.cleanup_delay == 3600
 	assert config.clear_chunks_on_complete == false
-	assert config.db_path == './uploads/files.db'
 	assert config.merge_buffer_size == 8192
+}
+
+// 测试：生成文件哈希
+fn test_generate_file_hash() {
+	hash1 := hono_upload.generate_file_hash('Hello, World!')
+	hash2 := hono_upload.generate_file_hash('Hello, World!')
+	hash3 := hono_upload.generate_file_hash('Different content')
+	
+	// 相同内容应该产生相同哈希
+	assert hash1 == hash2
+	// 不同内容应该产生不同哈希
+	assert hash1 != hash3
+	// MD5 哈希应该是 32 个字符
+	assert hash1.len == 32
 }
